@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mucker Culture | Defined by Casual Culture</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#000000',
+                            dark: '#121212',
+                            card: '#181818',
+                            border: '#2A2A2A',
+                            accent: '#E6E6E6',
+                            offwhite: '#F4F4F4',
+                            red: '#E53E3E'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Montserrat', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: Montserrat & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #F4F4F4;
+            overflow-x: hidden;
+        }
+        .font-display {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+        /* Custom Marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 22s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-black text-brand-offwhite antialiased selection:bg-white selection:text-black">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand-dark text-xs tracking-widest uppercase border-b border-brand-border py-2.5 overflow-hidden sticky top-0 z-50">
+        <div class="animate-marquee whitespace-nowrap flex items-center text-gray-400 font-medium">
+            <span class="mx-6"><i class="fa-solid fa-truck-fast mr-2 text-white"></i> FREE WORLDWIDE SHIPPING ON ORDERS OVER $100</span>
+            <span class="text-brand-border">•</span>
+            <span class="mx-6"><i class="fa-solid fa-fire mr-2 text-white"></i> DROP 04: CASUAL SUBCULTURE LIVE NOW</span>
+            <span class="text-brand-border">•</span>
+            <span class="mx-6"><i class="fa-solid fa-shield-halved mr-2 text-white"></i> GUARANTEED AUTHENTIC CASUAL WEAR</span>
+            <span class="text-brand-border">•</span>
+            <span class="mx-6"><i class="fa-solid fa-truck-fast mr-2 text-white"></i> FREE WORLDWIDE SHIPPING ON ORDERS OVER $100</span>
+            <span class="text-brand-border">•</span>
+            <span class="mx-6"><i class="fa-solid fa-fire mr-2 text-white"></i> DROP 04: CASUAL SUBCULTURE LIVE NOW</span>
+            <span class="text-brand-border">•</span>
+            <span class="mx-6"><i class="fa-solid fa-shield-halved mr-2 text-white"></i> GUARANTEED AUTHENTIC CASUAL WEAR</span>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-[33px] z-40 bg-black/80 backdrop-blur-md border-b border-brand-border/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-btn" aria-label="Toggle mobile menu" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                        <i class="fa-solid fa-bars-staggered text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Brand Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="font-display font-black text-2xl sm:text-3xl tracking-tighter text-white flex items-center gap-2 group">
+                        <span class="bg-white text-black px-2 py-0.5 rounded-sm group-hover:bg-gray-200 transition">M</span>
+                        <span>MUCKER CULTURE</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wider text-gray-300">
+                    <a href="#latest-drop" class="hover:text-white transition-colors duration-200 uppercase">New Drop</a>
+                    <a href="#featured-collection" class="hover:text-white transition-colors duration-200 uppercase">Shop All</a>
+                    <a href="#lookbook" class="hover:text-white transition-colors duration-200 uppercase">Lookbook</a>
+                    <a href="#brand-story" class="hover:text-white transition-colors duration-200 uppercase">Ethos</a>
+                    <button onclick="openSizeGuide()" class="hover:text-white transition-colors duration-200 uppercase">Size Guide</button>
+                </nav>
+
+                <!-- Action Controls -->
+                <div class="flex items-center space-x-5">
+                    <button onclick="toggleSearchModal()" aria-label="Search items" class="text-gray-300 hover:text-white transition p-2">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+                    <button onclick="toggleAccountModal()" aria-label="Account login" class="hidden sm:block text-gray-300 hover:text-white transition p-2">
+                        <i class="fa-regular fa-user text-lg"></i>
+                    </button>
+                    <!-- Cart Button with Badge -->
+                    <button onclick="openCartDrawer()" aria-label="Open Shopping Cart" class="relative text-gray-300 hover:text-white transition p-2">
+                        <i class="fa-solid fa-bag-shopping text-xl"></i>
+                        <span id="cart-count-badge" class="absolute -top-1 -right-1 bg-white text-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-black">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-b border-brand-border px-6 py-6 space-y-4">
+            <a href="#latest-drop" onclick="toggleMobileMenu()" class="block text-lg font-bold text-gray-200 hover:text-white uppercase">New Drop 04</a>
+            <a href="#featured-collection" onclick="toggleMobileMenu()" class="block text-lg font-bold text-gray-200 hover:text-white uppercase">Shop All Collections</a>
+            <a href="#lookbook" onclick="toggleMobileMenu()" class="block text-lg font-bold text-gray-200 hover:text-white uppercase">Lifestyle Lookbook</a>
+            <a href="#brand-story" onclick="toggleMobileMenu()" class="block text-lg font-bold text-gray-200 hover:text-white uppercase">Brand Ethos</a>
+            <button onclick="toggleMobileMenu(); openSizeGuide()" class="block text-lg font-bold text-gray-200 hover:text-white uppercase text-left">Size Guide</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden border-b border-brand-border">
+        <!-- Hero Background Image Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=2000&q=85" 
+                 alt="Mucker Culture Streetwear Hero" 
+                 class="w-full h-full object-cover object-center opacity-40 scale-105 transform hover:scale-100 transition duration-1000 ease-out filter grayscale contrast-125">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-20">
+            <span class="inline-block bg-white/10 text-white border border-white/20 text-xs uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-6 font-semibold backdrop-blur-md">
+                DROP 04 // LIMITED EDITION
+            </span>
+            <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white uppercase leading-none mb-6">
+                DEFINED BY <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-600">CASUAL CULTURE</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-gray-300 font-normal leading-relaxed mb-10">
+                Rooted in terrace subculture aesthetics, clean minimalist streetwear, and uncompromised heavyweight craftsmanship. Engineered for everyday durability.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#latest-drop" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white text-black text-sm font-bold tracking-widest uppercase rounded-sm hover:bg-gray-200 transition duration-300 transform active:scale-95 shadow-xl">
+                    SHOP LATEST DROP <i class="fa-solid fa-arrow-right-long ml-3"></i>
+                </a>
+                <a href="#lookbook" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-transparent border border-gray-600 text-white text-sm font-bold tracking-widest uppercase rounded-sm hover:border-white hover:bg-white/5 transition duration-300">
+                    VIEW LOOKBOOK
+                </a>
+            </div>
+
+            <!-- Features Highlights Pills -->
+            <div class="mt-16 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                <div class="flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-shirt text-white"></i> 400 GSM Heavy Cotton
+                </div>
+                <div class="flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-scissors text-white"></i> Custom Tailored Cut
+                </div>
+                <div class="flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-layer-group text-white"></i> Limited Batch Drops
+                </div>
+                <div class="flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-earth-americas text-white"></i> Global Express Shipping
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Drop / Product Grid Section -->
+    <section id="latest-drop" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-brand-border pb-6 gap-6">
+            <div>
+                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-1">CURATED SELECTION</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">FEATURED DROP 04</h2>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="flex flex-wrap gap-2 text-xs font-semibold tracking-wider uppercase" id="filter-pills">
+                <button onclick="filterProducts('all')" class="filter-btn active-filter px-4 py-2 rounded-full border border-white bg-white text-black transition">All</button>
+                <button onclick="filterProducts('outerwear')" class="filter-btn px-4 py-2 rounded-full border border-brand-border text-gray-400 hover:border-gray-500 hover:text-white transition">Outerwear</button>
+                <button onclick="filterProducts('tees')" class="filter-btn px-4 py-2 rounded-full border border-brand-border text-gray-400 hover:border-gray-500 hover:text-white transition">Graphic Tees</button>
+                <button onclick="filterProducts('accessories')" class="filter-btn px-4 py-2 rounded-full border border-brand-border text-gray-400 hover:border-gray-500 hover:text-white transition">Accessories</button>
+            </div>
+        </div>
+
+        <!-- Dynamic Product Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8" id="product-grid">
+            <!-- Products rendered dynamically via Javascript -->
+        </div>
+    </section>
+
+    <!-- Brand Ethos / Subculture Section -->
+    <section id="brand-story" class="bg-brand-dark border-y border-brand-border py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Visual Graphic -->
+                <div class="lg:col-span-6 relative">
+                    <div class="relative z-10 aspect-[4/5] rounded-lg overflow-hidden border border-brand-border shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=1000&q=80" 
+                             alt="Terrace Culture Subculture" 
+                             class="w-full h-full object-cover filter contrast-110 grayscale hover:grayscale-0 transition duration-700">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                    </div>
+                    <!-- Decorative Badge Overlay -->
+                    <div class="absolute -bottom-6 -right-6 z-20 bg-black border border-brand-border p-6 rounded-lg hidden sm:block max-w-xs shadow-xl">
+                        <p class="font-display font-bold text-lg text-white uppercase mb-1">MUCKER ARCHIVE</p>
+                        <p class="text-xs text-gray-400">Authentic casual wear inspired by 80s & 90s European supporter subculture.</p>
+                    </div>
+                </div>
+
+                <!-- Right Editorial Story -->
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-bold text-gray-400 tracking-[0.2em] uppercase bg-white/5 border border-white/10 px-3 py-1 rounded-sm inline-block">
+                        THE SUBCULTURE MANIFESTO
+                    </span>
+                    <h2 class="font-display text-3xl sm:text-5xl font-black uppercase text-white leading-tight">
+                        BORN FROM THE TERRACES. REFINED FOR THE CITY.
+                    </h2>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed font-normal">
+                        Mucker Culture is not just fashion; it’s an identity. We channel the spirit of weekend matchdays, underground music, clean denim, and timeless casual footwear. Designed for those who value subtlety over loud branding, and precision craftsmanship over disposable fast trends.
+                    </p>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Every garment is constructed with high-density heavyweight cotton, reinforced stitching, and tailored fits that stand up to the elements and time.
+                    </p>
+
+                    <!-- Core Attributes Grid -->
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-brand-border">
+                        <div>
+                            <h4 class="font-bold text-white text-sm uppercase mb-1">400+ GSM Heavy Cotton</h4>
+                            <p class="text-xs text-gray-400">Thick, structured feel for premium drape & durability.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm uppercase mb-1">Subtle Branding</h4>
+                            <p class="text-xs text-gray-400">Minimalist typography & tactile woven labels.</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <a href="#featured-collection" class="inline-flex items-center text-xs font-bold tracking-widest text-white uppercase border-b-2 border-white pb-1 hover:text-gray-300 hover:border-gray-300 transition">
+                            EXPLORE THE ARCHIVE <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Lookbook Section -->
+    <section id="lookbook" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-2">AUTUMN / WINTER 2026</span>
+            <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase text-white tracking-tight mb-4">LIFESTYLE LOOKBOOK</h2>
+            <p class="text-gray-400 text-sm">Visual representations of the casual aesthetic in authentic urban environments.</p>
+        </div>
+
+        <!-- Lookbook Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Lookbook Item 1 -->
+            <div class="group relative aspect-[3/4] bg-brand-dark rounded-lg overflow-hidden border border-brand-border">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" 
+                     alt="Look 01 - Terrace Anorak" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition duration-700 filter grayscale group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">LOOK 01</span>
+                        <h3 class="font-display font-bold text-lg text-white uppercase">TERRACE NAVY ANORAK</h3>
+                    </div>
+                    <button onclick="quickViewByID(1)" class="bg-white/10 backdrop-blur-md hover:bg-white hover:text-black border border-white/20 text-white p-3 rounded-full transition duration-300">
+                        <i class="fa-solid fa-plus text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Lookbook Item 2 -->
+            <div class="group relative aspect-[3/4] bg-brand-dark rounded-lg overflow-hidden border border-brand-border md:translate-y-6">
+                <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80" 
+                     alt="Look 02 - Heavy Tee" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition duration-700 filter grayscale group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">LOOK 02</span>
+                        <h3 class="font-display font-bold text-lg text-white uppercase">SUBCULTURE HEAVY TEE</h3>
+                    </div>
+                    <button onclick="quickViewByID(2)" class="bg-white/10 backdrop-blur-md hover:bg-white hover:text-black border border-white/20 text-white p-3 rounded-full transition duration-300">
+                        <i class="fa-solid fa-plus text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Lookbook Item 3 -->
+            <div class="group relative aspect-[3/4] bg-brand-dark rounded-lg overflow-hidden border border-brand-border">
+                <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80" 
+                     alt="Look 03 - Washed Hoodie" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition duration-700 filter grayscale group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">LOOK 03</span>
+                        <h3 class="font-display font-bold text-lg text-white uppercase">MONOGRAM WASHED HOODIE</h3>
+                    </div>
+                    <button onclick="quickViewByID(3)" class="bg-white/10 backdrop-blur-md hover:bg-white hover:text-black border border-white/20 text-white p-3 rounded-full transition duration-300">
+                        <i class="fa-solid fa-plus text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Propositions / Trust Badges -->
+    <section class="bg-brand-dark border-y border-brand-border py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-brand-border">
+                <div class="pt-6 md:pt-0 px-4">
+                    <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-4 text-white">
+                        <i class="fa-solid fa-gem text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-white text-base uppercase mb-2">PREMIUM CRAFTSMANSHIP</h3>
+                    <p class="text-xs text-gray-400 max-w-xs mx-auto">Constructed using organic 400+ GSM heavyweight cotton for lasting structure.</p>
+                </div>
+
+                <div class="pt-6 md:pt-0 px-4">
+                    <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-4 text-white">
+                        <i class="fa-solid fa-plane-departure text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-white text-base uppercase mb-2">FAST GLOBAL SHIPPING</h3>
+                    <p class="text-xs text-gray-400 max-w-xs mx-auto">Dispatched within 24 hours with fully tracked express courier service worldwide.</p>
+                </div>
+
+                <div class="pt-6 md:pt-0 px-4">
+                    <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-4 text-white">
+                        <i class="fa-solid fa-rotate-left text-xl"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-white text-base uppercase mb-2">HASSLE-FREE EXCHANGES</h3>
+                    <p class="text-xs text-gray-400 max-w-xs mx-auto">30-day money back guarantee and effortless size exchanges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews / Social Proof -->
+    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-12">
+            <div>
+                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-1">VERIFIED REVIEWS</span>
+                <h2 class="font-display text-2xl sm:text-4xl font-extrabold uppercase text-white">WHAT THE CULTURE SAYS</h2>
+            </div>
+            <div class="flex items-center gap-1 text-amber-400 text-sm">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span class="text-xs font-bold text-white ml-2">4.9 / 5.0 (840+ REVIEWS)</span>
+            </div>
+        </div>
+
+        <!-- Reviews Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-brand-card p-6 rounded-lg border border-brand-border relative">
+                <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-300 text-sm mb-4">"The fit on the Terrace Anorak is perfect. Heavy material, water repellent, and looks clean paired with classic trainers. Best casual brand in years."</p>
+                <div class="flex items-center justify-between border-t border-brand-border/60 pt-4 text-xs">
+                    <span class="font-bold text-white">Marcus V. — London, UK</span>
+                    <span class="text-emerald-400 font-medium"><i class="fa-solid fa-circle-check mr-1"></i> Verified Buyer</span>
+                </div>
+            </div>
+
+            <div class="bg-brand-card p-6 rounded-lg border border-brand-border relative">
+                <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-300 text-sm mb-4">"Finding heavy graphic tees with actual good GSM cotton is hard. Mucker nailed it. Print quality hasn't faded after multiple washes."</p>
+                <div class="flex items-center justify-between border-t border-brand-border/60 pt-4 text-xs">
+                    <span class="font-bold text-white">David K. — Berlin, DE</span>
+                    <span class="text-emerald-400 font-medium"><i class="fa-solid fa-circle-check mr-1"></i> Verified Buyer</span>
+                </div>
+            </div>
+
+            <div class="bg-brand-card p-6 rounded-lg border border-brand-border relative">
+                <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-300 text-sm mb-4">"Fast shipping to Melbourne. The tactical cargo trousers fit like a glove and the subtle branding gives it that proper understated terrace look."</p>
+                <div class="flex items-center justify-between border-t border-brand-border/60 pt-4 text-xs">
+                    <span class="font-bold text-white">Liam S. — Melbourne, AU</span>
+                    <span class="text-emerald-400 font-medium"><i class="fa-solid fa-circle-check mr-1"></i> Verified Buyer</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="bg-brand-dark border-t border-brand-border py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-full mb-6 text-white">
+                <i class="fa-solid fa-envelope-open-text text-xl"></i>
+            </div>
+            <h2 class="font-display text-3xl sm:text-5xl font-black uppercase text-white mb-4">JOIN THE CULTURE</h2>
+            <p class="text-gray-400 text-sm max-w-lg mx-auto mb-8">
+                Subscribe for private drop password access, secret restock alerts, and 15% off your first order.
+            </p>
+
+            <!-- Newsletter Form -->
+            <form id="newsletter-form" onsubmit="handleNewsletter(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input type="email" 
+                       id="newsletter-email" 
+                       required 
+                       placeholder="Enter your email address..." 
+                       class="bg-black border border-brand-border text-white text-sm px-4 py-3.5 rounded-sm focus:outline-none focus:border-white flex-1 transition">
+                <button type="submit" class="bg-white text-black font-bold text-xs uppercase tracking-widest px-8 py-3.5 rounded-sm hover:bg-gray-200 transition duration-300 whitespace-nowrap">
+                    ACCESS DROPS
+                </button>
+            </form>
+            
+            <p id="newsletter-success" class="hidden text-emerald-400 text-xs font-semibold mt-4">
+                <i class="fa-solid fa-circle-check mr-1"></i> WELCOME TO MUCKER CULTURE. YOUR 15% CODE IS: <span class="bg-white/10 px-2 py-1 rounded text-white font-mono">MUCKER15</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-brand-border text-gray-400 text-xs py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
+                
+                <!-- Column 1: Brand Info -->
+                <div class="space-y-4">
+                    <span class="font-display font-black text-xl text-white tracking-tighter uppercase block">MUCKER CULTURE</span>
+                    <p class="text-gray-500 leading-relaxed">
+                        Casual fashion rooted in terrace subculture aesthetics, clean everyday garments, and uncompromising modern street design.
+                    </p>
+                    <div class="flex items-center space-x-4 text-gray-400 text-base">
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-spotify"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Navigation -->
+                <div>
+                    <h4 class="font-bold text-white uppercase text-sm mb-4">COLLECTIONS</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#latest-drop" class="hover:text-white transition">Drop 04 (Latest)</a></li>
+                        <li><a href="#featured-collection" class="hover:text-white transition">Heavyweight Outerwear</a></li>
+                        <li><a href="#featured-collection" class="hover:text-white transition">Graphic Tees & Tops</a></li>
+                        <li><a href="#featured-collection" class="hover:text-white transition">Headwear & Beanie Archive</a></li>
+                        <li><a href="#lookbook" class="hover:text-white transition">Lookbook A/W 2026</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Customer Care -->
+                <div>
+                    <h4 class="font-bold text-white uppercase text-sm mb-4">HELP & INFO</h4>
+                    <ul class="space-y-2.5">
+                        <li><button onclick="openSizeGuide()" class="hover:text-white transition">Size Guide & Fit Spec</button></li>
+                        <li><a href="#" class="hover:text-white transition">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Returns & Exchanges Portal</a></li>
+                        <li><a href="#" class="hover:text-white transition">Garment Care Guide</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact Customer Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Payment Badges -->
+                <div>
+                    <h4 class="font-bold text-white uppercase text-sm mb-4">SECURE CHECKOUT</h4>
+                    <p class="text-gray-500 mb-4">We support encrypted modern payments and global courier tracking.</p>
+                    <div class="flex flex-wrap gap-2 text-lg text-gray-400">
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <i class="fa-brands fa-cc-mastercard"></i>
+                        <i class="fa-brands fa-cc-apple-pay"></i>
+                        <i class="fa-brands fa-google-pay"></i>
+                        <i class="fa-brands fa-cc-paypal"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-brand-border/60 pt-8 flex flex-col sm:flex-row items-center justify-between text-gray-500 gap-4">
+                <p>&copy; 2026 MUCKER CULTURE LTD. ALL RIGHTS RESERVED.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-gray-300">PRIVACY POLICY</a>
+                    <a href="#" class="hover:text-gray-300">TERMS OF SERVICE</a>
+                    <a href="#" class="hover:text-gray-300">COOKIE PREFERENCES</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer Modal -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onclick="closeCartDrawer()"></div>
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-brand-dark border-l border-brand-border flex flex-col">
+                
+                <!-- Drawer Header -->
+                <div class="p-6 border-b border-brand-border flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <h3 class="font-display font-black text-xl text-white uppercase">YOUR BAG</h3>
+                        <span id="cart-item-count-text" class="text-xs font-bold bg-white/10 px-2 py-0.5 rounded text-gray-300">0 ITEMS</span>
+                    </div>
+                    <button onclick="closeCartDrawer()" aria-label="Close cart drawer" class="text-gray-400 hover:text-white p-2">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Free Shipping Progress Bar -->
+                <div class="bg-black px-6 py-3 border-b border-brand-border">
+                    <div class="flex justify-between text-xs mb-1.5">
+                        <span id="shipping-progress-text" class="text-gray-300 font-medium">Add $100.00 for FREE Shipping</span>
+                        <span id="shipping-progress-pct" class="font-bold text-white">0%</span>
+                    </div>
+                    <div class="w-full bg-brand-border h-1.5 rounded-full overflow-hidden">
+                        <div id="shipping-progress-bar" class="bg-white h-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Cart Items Container -->
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-6">
+                    <!-- Dynamic cart items rendered here -->
+                </div>
+
+                <!-- Drawer Footer -->
+                <div class="p-6 border-t border-brand-border bg-black space-y-4">
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between text-gray-400">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal" class="text-white font-semibold">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-gray-400">
+                            <span>Shipping</span>
+                            <span id="cart-shipping-cost" class="text-white font-semibold font-mono">Calculated at checkout</span>
+                        </div>
+                        <div class="flex justify-between text-base font-bold border-t border-brand-border pt-2 text-white">
+                            <span>Total</span>
+                            <span id="cart-total" class="font-mono text-lg">$0.00</span>
+                        </div>
+                    </div>
+
+                    <button onclick="handleCheckout()" class="w-full bg-white text-black font-bold text-sm uppercase tracking-widest py-4 rounded-sm hover:bg-gray-200 transition duration-300 flex items-center justify-center gap-2">
+                        PROCEED TO CHECKOUT <i class="fa-solid fa-lock text-xs"></i>
+                    </button>
+                    <p class="text-[10px] text-center text-gray-500 uppercase tracking-widest">Taxes and official duties included</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div id="quickview-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeQuickView()"></div>
+        <div class="relative bg-brand-dark border border-brand-border rounded-lg max-w-3xl w-full overflow-hidden shadow-2xl z-10 my-8">
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 z-20 bg-black/60 hover:bg-white hover:text-black border border-white/20 text-white w-9 h-9 rounded-full flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2" id="quickview-content">
+                <!-- Content inserted via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Size Guide Modal -->
+    <div id="sizeguide-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeSizeGuide()"></div>
+        <div class="relative bg-brand-dark border border-brand-border rounded-lg max-w-xl w-full p-6 z-10">
+            <div class="flex items-center justify-between pb-4 border-b border-brand-border mb-6">
+                <h3 class="font-display font-bold text-xl uppercase text-white">SIZE & FIT SPECIFICATIONS</h3>
+                <button onclick="closeSizeGuide()" class="text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <p class="text-xs text-gray-400 mb-4">All Mucker Culture tops & outerwear are engineered with a relaxed casual fit. For a tailored fit, size down.</p>
+
+            <div class="overflow-x-auto mb-6">
+                <table class="w-full text-xs text-left text-gray-300">
+                    <thead class="bg-black uppercase text-gray-400 font-bold border-b border-brand-border">
+                        <tr>
+                            <th class="py-3 px-4">Size</th>
+                            <th class="py-3 px-4">Chest (Inches)</th>
+                            <th class="py-3 px-4">Length (Inches)</th>
+                            <th class="py-3 px-4">Sleeve (Inches)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-brand-border/60">
+                        <tr><td class="py-3 px-4 font-bold text-white">S</td><td class="py-3 px-4">38 - 40</td><td class="py-3 px-4">28.5</td><td class="py-3 px-4">25.0</td></tr>
+                        <tr><td class="py-3 px-4 font-bold text-white">M</td><td class="py-3 px-4">41 - 43</td><td class="py-3 px-4">29.5</td><td class="py-3 px-4">25.5</td></tr>
+                        <tr><td class="py-3 px-4 font-bold text-white">L</td><td class="py-3 px-4">44 - 46</td><td class="py-3 px-4">30.5</td><td class="py-3 px-4">26.0</td></tr>
+                        <tr><td class="py-3 px-4 font-bold text-white">XL</td><td class="py-3 px-4">47 - 49</td><td class="py-3 px-4">31.5</td><td class="py-3 px-4">26.5</td></tr>
+                        <tr><td class="py-3 px-4 font-bold text-white">XXL</td><td class="py-3 px-4">50 - 52</td><td class="py-3 px-4">32.5</td><td class="py-3 px-4">27.0</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button onclick="closeSizeGuide()" class="w-full bg-white text-black font-bold text-xs uppercase py-3 rounded-sm hover:bg-gray-200 transition">
+                CLOSE SPEC
+            </button>
+        </div>
+    </div>
+
+    <!-- Search Overlay -->
+    <div id="search-modal" class="fixed inset-0 z-50 flex items-start justify-center pt-24 p-4 hidden">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="toggleSearchModal()"></div>
+        <div class="relative bg-brand-dark border border-brand-border rounded-lg max-w-2xl w-full p-6 z-10">
+            <div class="flex items-center gap-4 border-b border-brand-border pb-4">
+                <i class="fa-solid fa-magnifying-glass text-gray-400 text-lg"></i>
+                <input type="text" 
+                       id="search-input" 
+                       oninput="handleSearch(this.value)" 
+                       placeholder="Search Anoraks, Graphic Tees, Hoodies..." 
+                       class="w-full bg-transparent text-white text-lg focus:outline-none placeholder-gray-500">
+                <button onclick="toggleSearchModal()" class="text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <div id="search-results" class="mt-6 space-y-3 max-h-80 overflow-y-auto">
+                <p class="text-xs text-gray-500 uppercase tracking-widest">Popular searches: Terrace Anorak, Heavyweight Tee, Beanie</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Banner -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 z-50 bg-white text-black font-bold text-xs px-6 py-4 rounded shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300">
+        <i class="fa-solid fa-circle-check text-base text-black"></i>
+        <span id="toast-message">Item added to bag</span>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Product Data Repository
+        const PRODUCTS = [
+            {
+                id: 1,
+                name: "Mucker Terrace Anorak - Dark Navy",
+                category: "outerwear",
+                price: 145.00,
+                badge: "LIMITED DROP",
+                imgFront: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
+                imgBack: "https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=800&q=80",
+                desc: "Weather-resistant nylon outer with mesh lining, branded chest pocket badge, and custom branded pull tabs."
+            },
+            {
+                id: 2,
+                name: "Casual Subculture Heavy Tee - Off White",
+                category: "tees",
+                price: 58.00,
+                badge: "400 GSM",
+                imgFront: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+                imgBack: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+                desc: "100% organic heavyweight cotton tee with high-density chest print and ribbed collar."
+            },
+            {
+                id: 3,
+                name: "Monogram Heavyweight Hoodie - Washed Black",
+                category: "outerwear",
+                price: 110.00,
+                badge: "BESTSELLER",
+                imgFront: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
+                imgBack: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80",
+                desc: "Washed vintage finish with double-lined hood, seamless side panels, and subtle tonal chest monogram."
+            },
+            {
+                id: 4,
+                name: "Subculture Ribbed Beanie - Charcoal",
+                category: "accessories",
+                price: 38.00,
+                badge: "ESSENTIAL",
+                imgFront: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=800&q=80",
+                imgBack: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&w=800&q=80",
+                desc: "Heavy ribbed knit beanie crafted from merino wool blend with embroidered heritage logo fold."
+            },
+            {
+                id: 5,
+                name: "Tactical Cargo Trousers - Deep Black",
+                category: "outerwear",
+                price: 125.00,
+                badge: "RESTOCKED",
+                imgFront: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80",
+                imgBack: "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=800&q=80",
+                desc: "Durable ripstop cotton cargo pants featuring tactical multi-pockets and adjustable ankle cuffs."
+            },
+            {
+                id: 6,
+                name: "Football Subculture Oversized Tee - Black",
+                category: "tees",
+                price: 62.00,
+                badge: "NEW",
+                imgFront: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80",
+                imgBack: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
+                desc: "Boxy fit streetwear tee with bold back subculture graphic typography print."
+            },
+            {
+                id: 7,
+                name: "Casual Track Jacket - Forest / Off White",
+                category: "outerwear",
+                price: 135.00,
+                badge: "LIMITED",
+                imgFront: "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=800&q=80",
+                imgBack: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
+                desc: "Classic retro track top with funnel collar, white piping stripes, and zipped hand pockets."
+            },
+            {
+                id: 8,
+                name: "Heritage Canvas Tote Bag - Black/White",
+                category: "accessories",
+                price: 45.00,
+                badge: "ESSENTIAL",
+                imgFront: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
+                imgBack: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
+                desc: "Heavyweight 16oz cotton canvas tote with reinforced handles and interior laptop sleeve."
+            }
+        ];
+
+        // App State
+        let cart = [];
+        let activeFilter = 'all';
+
+        // Initialize App
+        document.addEventListener("DOMContentLoaded", () => {
+            renderProducts();
+            updateCartUI();
+        });
+
+        // Render Product Grid
+        function renderProducts() {
+            const container = document.getElementById("product-grid");
+            const filtered = activeFilter === 'all' 
+                ? PRODUCTS 
+                : PRODUCTS.filter(p => p.category === activeFilter);
+
+            container.innerHTML = filtered.map(product => `
+                <div class="group bg-brand-card rounded-lg border border-brand-border overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-gray-500">
+                    <div class="relative aspect-[3/4] bg-black overflow-hidden cursor-pointer" onclick="openQuickView(${product.id})">
+                        <span class="absolute top-3 left-3 z-10 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold tracking-widest px-2.5 py-1 rounded border border-white/10 uppercase">
+                            ${product.badge}
+                        </span>
+                        
+                        <!-- Image Hover Swapper -->
+                        <img src="${product.imgFront}" 
+                             alt="${product.name}" 
+                             class="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0">
+                        <img src="${product.imgBack}" 
+                             alt="${product.name} back view" 
+                             class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+
+                        <!-- Quick Action Overlay -->
+                        <div class="absolute inset-x-3 bottom-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-2">
+                            <button onclick="event.stopPropagation(); quickAddToCart(${product.id})" 
+                                    class="flex-1 bg-white text-black font-bold text-xs uppercase tracking-wider py-2.5 rounded-sm hover:bg-gray-200 transition">
+                                <i class="fa-solid fa-plus mr-1"></i> Quick Add
+                            </button>
+                            <button onclick="event.stopPropagation(); openQuickView(${product.id})" 
+                                    class="bg-black/80 text-white border border-white/20 p-2.5 rounded-sm hover:bg-white hover:text-black transition">
+                                <i class="fa-solid fa-eye text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-1">${product.category}</span>
+                            <h3 class="font-display font-bold text-sm text-white uppercase line-clamp-1 group-hover:text-gray-300 transition">${product.name}</h3>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between border-t border-brand-border/60 pt-3">
+                            <span class="font-mono text-sm font-bold text-white">$${product.price.toFixed(2)}</span>
+                            <span class="text-[10px] font-semibold text-emerald-400">In Stock</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Function
+        function filterProducts(category) {
+            activeFilter = category;
+            
+            // Update Active Buttons UI
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-black', 'border-white');
+                btn.classList.add('border-brand-border', 'text-gray-400');
+            });
+            event.target.classList.add('bg-white', 'text-black', 'border-white');
+            event.target.classList.remove('border-brand-border', 'text-gray-400');
+
+            renderProducts();
+        }
+
+        // Cart Logic
+        function quickAddToCart(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingIndex = cart.findIndex(item => item.id === productId && item.size === 'L');
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.imgFront,
+                    size: 'L',
+                    quantity: 1
+                });
+            }
+
+            updateCartUI();
+            showToast(`Added ${product.name} to bag`);
+            openCartDrawer();
+        }
+
+        function updateCartQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const countBadge = document.getElementById('cart-count-badge');
+            const countText = document.getElementById('cart-item-count-text');
+            const container = document.getElementById('cart-items-container');
+            const subtotalElem = document.getElementById('cart-subtotal');
+            const totalElem = document.getElementById('cart-total');
+            const progressBar = document.getElementById('shipping-progress-bar');
+            const progressText = document.getElementById('shipping-progress-text');
+            const progressPct = document.getElementById('shipping-progress-pct');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            countBadge.innerText = totalItems;
+            countText.innerText = `${totalItems} ITEM${totalItems === 1 ? '' : 'S'}`;
+
+            // Free shipping threshold ($100)
+            const threshold = 100;
+            const pct = Math.min(100, Math.round((subtotal / threshold) * 100));
+            progressBar.style.width = `${pct}%`;
+            progressPct.innerText = `${pct}%`;
+
+            if (subtotal >= threshold) {
+                progressText.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check mr-1"></i> YOU QUALIFY FOR FREE SHIPPING!</span>`;
+            } else {
+                const needed = (threshold - subtotal).toFixed(2);
+                progressText.innerText = `Add $${needed} more for FREE Shipping`;
+            }
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 space-y-4">
+                        <i class="fa-solid fa-bag-shopping text-4xl text-gray-600"></i>
+                        <p class="text-gray-400 text-sm font-semibold uppercase">YOUR BAG IS CURRENTLY EMPTY</p>
+                        <button onclick="closeCartDrawer()" class="bg-white text-black font-bold text-xs uppercase px-6 py-2.5 rounded-sm hover:bg-gray-200 transition">
+                            BROWSE COLLECTION
+                        </button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map((item, idx) => `
+                    <div class="flex gap-4 border-b border-brand-border/60 pb-4">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-24 object-cover rounded bg-black border border-brand-border">
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-display font-bold text-xs uppercase text-white leading-tight line-clamp-2">${item.name}</h4>
+                                    <button onclick="updateCartQuantity(${idx}, -${item.quantity})" class="text-gray-500 hover:text-white pl-2">
+                                        <i class="fa-solid fa-trash text-xs"></i>
+                                    </button>
+                                </div>
+                                <span class="text-[10px] text-gray-400 uppercase tracking-wider block mt-1">SIZE: ${item.size}</span>
+                            </div>
+
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="flex items-center border border-brand-border rounded">
+                                    <button onclick="updateCartQuantity(${idx}, -1)" class="px-2 py-1 text-gray-400 hover:text-white text-xs">-</button>
+                                    <span class="px-2 text-xs font-mono font-bold text-white">${item.quantity}</span>
+                                    <button onclick="updateCartQuantity(${idx}, 1)" class="px-2 py-1 text-gray-400 hover:text-white text-xs">+</button>
+                                </div>
+                                <span class="font-mono text-sm font-bold text-white">$${(item.price * item.quantity).toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            subtotalElem.innerText = `$${subtotal.toFixed(2)}`;
+            totalElem.innerText = `$${subtotal.toFixed(2)}`;
+        }
+
+        function openCartDrawer() {
+            document.getElementById('cart-drawer').classList.remove('hidden');
+        }
+
+        function closeCartDrawer() {
+            document.getElementById('cart-drawer').classList.add('hidden');
+        }
+
+        // Quick View Modal
+        function quickViewByID(id) {
+            openQuickView(id);
+        }
+
+        function openQuickView(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            const modalContent = document.getElementById('quickview-content');
+            modalContent.innerHTML = `
+                <div class="relative aspect-square bg-black">
+                    <img src="${product.imgFront}" alt="${product.name}" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 flex flex-col justify-between space-y-6">
+                    <div>
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-1">${product.category} // ${product.badge}</span>
+                        <h3 class="font-display font-black text-2xl uppercase text-white mb-2 leading-tight">${product.name}</h3>
+                        <p class="font-mono text-xl font-bold text-white mb-4">$${product.price.toFixed(2)}</p>
+                        <p class="text-gray-300 text-xs leading-relaxed mb-6">${product.desc}</p>
+
+                        <!-- Size Selector -->
+                        <div class="mb-6">
+                            <label class="block text-xs font-bold text-gray-300 uppercase mb-2">SELECT SIZE</label>
+                            <div class="grid grid-cols-5 gap-2" id="quickview-size-selector">
+                                <button onclick="selectSize(this)" class="size-opt px-3 py-2 border border-white text-white font-bold text-xs rounded-sm">S</button>
+                                <button onclick="selectSize(this)" class="size-opt px-3 py-2 border border-brand-border text-gray-400 font-bold text-xs rounded-sm hover:border-gray-500">M</button>
+                                <button onclick="selectSize(this)" class="size-opt px-3 py-2 border border-brand-border text-gray-400 font-bold text-xs rounded-sm hover:border-gray-500">L</button>
+                                <button onclick="selectSize(this)" class="size-opt px-3 py-2 border border-brand-border text-gray-400 font-bold text-xs rounded-sm hover:border-gray-500">XL</button>
+                                <button onclick="selectSize(this)" class="size-opt px-3 py-2 border border-brand-border text-gray-400 font-bold text-xs rounded-sm hover:border-gray-500">XXL</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <button onclick="addFromQuickView(${product.id})" class="w-full bg-white text-black font-bold text-xs uppercase tracking-widest py-4 rounded-sm hover:bg-gray-200 transition">
+                            ADD TO BAG
+                        </button>
+                        <button onclick="closeQuickView(); openSizeGuide();" class="w-full text-center text-xs text-gray-400 underline hover:text-white">
+                            View Size Guide Specs
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('quickview-modal').classList.remove('hidden');
+        }
+
+        let selectedQuickViewSize = 'S';
+
+        function selectSize(btn) {
+            document.querySelectorAll('.size-opt').forEach(b => {
+                b.classList.remove('border-white', 'text-white');
+                b.classList.add('border-brand-border', 'text-gray-400');
+            });
+            btn.classList.add('border-white', 'text-white');
+            btn.classList.remove('border-brand-border', 'text-gray-400');
+            selectedQuickViewSize = btn.innerText;
+        }
+
+        function addFromQuickView(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            cart.push({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.imgFront,
+                size: selectedQuickViewSize,
+                quantity: 1
+            });
+
+            updateCartUI();
+            closeQuickView();
+            showToast(`Added ${product.name} (${selectedQuickViewSize}) to bag`);
+            openCartDrawer();
+        }
+
+        function closeQuickView() {
+            document.getElementById('quickview-modal').classList.add('hidden');
+        }
+
+        // Modals & Navigation
+        function openSizeGuide() {
+            document.getElementById('sizeguide-modal').classList.remove('hidden');
+        }
+
+        function closeSizeGuide() {
+            document.getElementById('sizeguide-modal').classList.add('hidden');
+        }
+
+        function toggleSearchModal() {
+            const modal = document.getElementById('search-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                document.getElementById('search-input').focus();
+            }
+        }
+
+        function handleSearch(query) {
+            const resultsContainer = document.getElementById('search-results');
+            if (!query.trim()) {
+                resultsContainer.innerHTML = '<p class="text-xs text-gray-500 uppercase tracking-widest">Popular searches: Terrace Anorak, Heavyweight Tee, Beanie</p>';
+                return;
+            }
+
+            const matches = PRODUCTS.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
+            if (matches.length === 0) {
+                resultsContainer.innerHTML = '<p class="text-xs text-gray-400 py-4">No garments match your query.</p>';
+            } else {
+                resultsContainer.innerHTML = matches.map(product => `
+                    <div onclick="openQuickView(${product.id}); toggleSearchModal();" class="flex items-center gap-4 p-2 hover:bg-white/5 rounded cursor-pointer transition">
+                        <img src="${product.imgFront}" class="w-12 h-14 object-cover rounded">
+                        <div>
+                            <h4 class="font-bold text-xs uppercase text-white">${product.name}</h4>
+                            <span class="font-mono text-xs text-gray-400">$${product.price.toFixed(2)}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+
+        // Newsletter Form
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletter-email').value;
+            if (email) {
+                document.getElementById('newsletter-form').classList.add('hidden');
+                document.getElementById('newsletter-success').classList.remove('hidden');
+                showToast("Subscription successful! Code MUCKER15 activated.");
+            }
+        }
+
+        // Checkout Placeholder
+        function handleCheckout() {
+            if (cart.length === 0) {
+                showToast("Your shopping bag is empty.");
+                return;
+            }
+            showToast("Redirecting to Shopify Secure Checkout...");
+        }
+
+        function toggleAccountModal() {
+            showToast("Member account login module initialized.");
+        }
+
+        // Toast Helper
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        // Close Modals on ESC key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeCartDrawer();
+                closeQuickView();
+                closeSizeGuide();
+                document.getElementById('search-modal').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
